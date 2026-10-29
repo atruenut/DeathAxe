@@ -10,7 +10,7 @@ No samples, no audio input needed.
 
 ## Download
 
-**[prebuilt/win64/DeathAxe.vst3](prebuilt/win64/DeathAxe.vst3?raw=1)** - Windows 64-bit VST3 (a normal DLL with a `.vst3` extension, about 1.4 MB, no installer, no extra runtimes).
+**[Download DeathAxe.vst3](https://github.com/atruenut/DeathAxe/raw/main/prebuilt/win64/DeathAxe.vst3)** (also browsable at [prebuilt/win64](https://github.com/atruenut/DeathAxe/tree/main/prebuilt/win64)) - Windows 64-bit VST3 (a normal DLL with a `.vst3` extension, about 1.4 MB, no installer, no extra runtimes).
 
 SHA-256: `1a71049e5d01dc457cf477f26b77c4f28934434b324b4b2b4e8518c5cd02f37e`
 
