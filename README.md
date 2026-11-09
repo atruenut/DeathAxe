@@ -85,4 +85,4 @@ prebuilt/win64/     ready-to-use Windows build
 
 ## Licence
 
-No licence has been chosen for this project yet, so by default all rights are reserved; add a `LICENSE` file to decide. Third-party components are listed in [THIRD_PARTY.md](THIRD_PARTY.md). The vendor name in `src/vst3/deathaxe_vst3.cpp` is plain "DeathAxe".
+MIT, see [LICENSE](LICENSE). Third-party components are listed in [THIRD_PARTY.md](THIRD_PARTY.md). The vendor name in `src/vst3/deathaxe_vst3.cpp` is plain "DeathAxe".
