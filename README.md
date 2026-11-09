@@ -20,7 +20,11 @@ SHA-256: `1a71049e5d01dc457cf477f26b77c4f28934434b324b4b2b4e8518c5cd02f37e`
 3. Load **DeathAxe** on an **instrument** track (not an audio track) and send it MIDI notes.
 4. Pick a preset from the preset bar at the top of the plug-in, and play.
 
-> **Status:** the DSP, the VST3 wrapper and the editor logic are tested (see below), but I have had no Windows machine to run the plug-in window or load it in a real DAW. If anything misbehaves, please open an issue with your DAW name and version.
+> **Status:** confirmed working on Windows by the author. If anything misbehaves, please open an issue with your DAW name and version.
+
+### macOS and Linux (experimental)
+
+Every push is built automatically for Windows, macOS (universal, unsigned) and Linux by [GitHub Actions](.github/workflows/build.yml); download the zips from the *Actions* tab or from a tagged *Release*. The macOS and Linux builds are **untested**: the DSP is portable and the Linux build passed the VST3 validator, but the custom editor window is Windows-only, so those hosts show their generic parameter panel with no preset bar. On macOS you may need to clear the quarantine flag (`xattr -dr com.apple.quarantine DeathAxe.vst3`) because the bundle is not signed. Copy to `~/Library/Audio/Plug-Ins/VST3` (macOS) or `~/.vst3` (Linux).
 
 ## Using it
 
