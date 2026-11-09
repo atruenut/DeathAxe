@@ -6,6 +6,10 @@ on:
     tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Attach the built zips to this release tag (e.g. v1.2.0). Leave empty to only build.'
+        required: false
 
 jobs:
   build:
@@ -52,7 +56,7 @@ jobs:
           path: DeathAxe-${{ matrix.name }}.zip
 
   release:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || inputs.release_tag != ''
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -62,10 +66,14 @@ jobs:
         with:
           path: artifacts
           merge-multiple: true
-      - name: Create release
+      - name: Create or update release
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.release_tag || github.ref_name }}
         run: |
-          gh release create "${{ github.ref_name }}" artifacts/*.zip \
-            --repo "${{ github.repository }}" --title "DeathAxe ${{ github.ref_name }}" \
-            --notes "VST3 builds for Windows (x64), macOS (universal, unsigned) and Linux (x64). Unzip and copy DeathAxe.vst3 to your VST3 folder. The custom editor window is currently Windows-only; macOS and Linux hosts show their generic parameter panel. See README.md."
+          if gh release view "$TAG" --repo "${{ github.repository }}" > /dev/null 2>&1; then
+            gh release upload "$TAG" artifacts/*.zip --clobber --repo "${{ github.repository }}"
+          else
+            gh release create "$TAG" artifacts/*.zip --repo "${{ github.repository }}" --title "DeathAxe $TAG" \
+              --notes "VST3 builds for Windows (x64), macOS (universal, unsigned) and Linux (x64). Unzip and copy DeathAxe.vst3 to your VST3 folder. The custom editor window is currently Windows-only; macOS and Linux hosts show their generic parameter panel. See README.md."
+          fi
